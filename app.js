@@ -6,11 +6,15 @@ const app = express();
 const tasks = require('./routes/tasks');
 const connectDB = require('./db/connect');
 
+const errorHandler = require('./middleware/error-handler');
+
 //middleware
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 
 app.use('/api/v1/tasks', tasks);
+
+app.use(errorHandler);
 
 const port = 3000;
 
